@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 #Tarefas
 
-add SPlash
-add Pages
-Create template pages
-fix design
+-add SPlash
+-add Pages
+-Create template pages
+-fix design

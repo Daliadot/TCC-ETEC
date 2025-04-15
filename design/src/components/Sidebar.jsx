@@ -47,9 +47,9 @@ const Sidebar = ({ isOpen, setIsOpen, setActivePage }) => {
       {/* Topo da sidebar com título e botão de menu */}
       <div className="p-4 flex justify-between items-center">
         {/* Título "Dashboard", visível apenas quando a sidebar está aberta */}
-        <h1 className={`font-bold overflow-hidden transition-all duration-300 text-lg text-nowrap text-[#3B40E8]
+        <h1 className={`font-bold overflow-hidden transition-all duration-300 text-lg text-nowrap text-[#313A4B]
           ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
-          Dashboard
+          Care.ly
         </h1>
 
         {/* Botão para abrir/fechar a sidebar */}
