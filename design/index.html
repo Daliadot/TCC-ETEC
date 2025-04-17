@@ -1,13 +1,88 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>Seu App</title>
+
+    <!-- Splash CSS -->
+    <style>
+      #splash {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        background: #313A4B;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+        font-size: 1.5rem;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+
+      #splash.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .loader {
+  width: 108px;
+  height: 16px;
+  background:
+    radial-gradient(circle 8px at 8px center, #FFF 100%, transparent 0),
+    radial-gradient(circle 8px at 8px center, #FFF 100%, transparent 0);
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  position: relative;
+  animation: ballX 1s linear infinite;
+}
+.loader:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background:#FFF;
+  inset:0;
+  margin:auto;
+  animation: moveX 1s cubic-bezier(0.5,300,0.5,-300) infinite;
+}
+@keyframes ballX {
+  0%,25%,50%,75%, 100%  {background-position: 25% 0,75% 0}
+  40%     {background-position: 25% 0,85% 0}
+  90%     {background-position: 15% 0,75% 0}
+}
+@keyframes moveX {
+  100% {transform:translate(0.15px)}
+}
+  
+    </style>
   </head>
+
   <body>
+    <!-- Splash inicial -->
+    <div id="splash">
+      <br>
+      <br>
+      <span class="loader"></span>
+
+    </div>
+
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Remove splash quando React carregar -->
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const splash = document.getElementById('splash');
+        if (splash) {
+          setTimeout(() => {
+            splash.classList.add('hidden');
+            setTimeout(() => splash.remove(), 300); // Remove do DOM
+          }, 300); // Espera pra transição acontecer
+        }
+      });
+    </script>
   </body>
 </html>

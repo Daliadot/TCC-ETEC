@@ -1,19 +1,15 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import Sidebar from './components/Sidebar';
-import MainContent from './components/MainContent'
+import MainContent from './components/MainContent';
 
-function App() {
-  const [isOpen, setIsOpen] = useState(true);
-  
+export default function App() {
+  const [isOpen, setIsOpen] = useState(true);           // abre/fecha sidebar
+  const [activePage, setActivePage] = useState('Home'); // controla qual conteúdo exibir
 
   return (
-    <>
-      <div className="h-screen flex bg-[#F3F5F7] px-3 py-4">
-        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-        <MainContent />
-      </div>
-    </>
-  ) 
+    <div className="flex h-screen">
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} setActivePage={setActivePage} />
+      <MainContent activePage={activePage} />
+    </div>
+  );
 }
-
-export default App
