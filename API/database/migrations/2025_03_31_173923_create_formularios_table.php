@@ -9,14 +9,34 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('formularios', function (Blueprint $table) {
             $table->id();
-            $table->string('status');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->unsignedBigInteger('cd_servico');
+            $table->unsignedBigInteger('cd_usuario'); 
+            $table->unsignedBigInteger('cd_instituicao'); 
             $table->timestamps();
+    
+            
+            $table->foreign('cd_servico')
+                  ->references('id')
+                  ->on('servicos')
+                  ->onDelete('cascade');
+
+            $table->foreign('cd_usuario')
+                  ->references('id')
+                  ->on('usuarios')
+                  ->onDelete('cascade');
+
+            $table->foreign('cd_instituicao')
+            ->references('id')
+            ->on('instituicoes')
+            ->onDelete('cascade');
         });
     }
+    
 
     /**
      * Reverse the migrations.

@@ -9,15 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('servicos', function (Blueprint $table) {
+
             $table->id();
             $table->string('descricao');
-            $table->string('horas_servico');
+            $table->string('horas_servico', 4);
+            $table->BigInteger('cd_instituicao')->unsigned(); 
             $table->timestamps();
+
+            $table->foreign('cd_instituicao')
+            ->references('id')
+            ->on('instituicoes')
+            ->onDelete('cascade');
         });
     }
+    
 
     /**
      * Reverse the migrations.
