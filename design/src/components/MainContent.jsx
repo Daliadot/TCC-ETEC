@@ -9,7 +9,7 @@ import Lojinha from './pages/Lojinha';
 
 export default function MainContent({ activePage }) {
   return (
-    <div className="flex-1 p-6 overflow-auto">
+    <div className="bg-white border-2 rounded-md border-[rgba(0,0,0,0.08)] h-full p-6 shadow-sm flex-1 flex-col overflow-auto ">
       {activePage === 'Home' && <Home />}
       {activePage === 'Perfil' && <Perfil />}
       
